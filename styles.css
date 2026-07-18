@@ -1,0 +1,176 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 2. Remove default margin */
+  *:not(dialog) {
+    margin: 0;
+  }
+  
+  /* 3. Enable keyword animations */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+  
+  body {
+    /* 4. Add accessible line-height */
+    line-height: 1.5;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    font-family: "Roboto Mono", monospace;
+  }
+  
+  /* 6. Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* 7. Inherit fonts for form controls */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* 8. Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /* 9. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  
+  /*
+    10. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+:root{
+  --word-length: 6;
+  --box-size: 60px;
+}
+
+  body{
+    background-color: #262d31;
+  }
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #1e2428;
+  padding: 20px 50px;
+  border-bottom: 20px solid #14191c;
+}
+
+a{
+  font-size: 1.5rem;
+  color: #5eca7f;
+  text-decoration: none;
+}
+
+.title{
+  font-size: 3rem;
+  color: #5eca7f;
+}
+
+#game-board{
+  display: grid;
+  grid-template-columns: repeat(var(--word-length), 1fr);
+  width: min-content;
+  gap: 5px;
+  margin: auto;
+}
+
+.letter-block{
+  display: flex;
+  width: var(--box-size);
+  height: var(--box-size);
+  background-color: #14191c;
+  border-radius: 5px;
+  border: 3px solid #36434b;
+
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.correct{
+  background-color: rgb(72, 168, 75);
+  border: 3px solid rgb(84, 214, 89);
+}
+
+.wrong{
+  background-color: rgb(168, 72, 72);
+  border: 3px solid rgb(227, 75, 75);
+}
+
+.wrong-pos{
+  background-color: rgb(193, 187, 72);
+  border: 3px solid rgb(236, 228, 78);
+}
+
+.letter{
+    font-size: 2rem;
+    font-weight: bold;
+    margin: auto;
+    color: rgb(239, 239, 239);
+    backface-visibility: hidden;
+}
+
+#category{
+  text-align: center;
+  font-size: 2rem;
+  margin: 30px;
+  padding: 20px;
+  color: rgb(239, 239, 239);
+  font-weight: bold;
+  border-bottom: 3px dotted #5eca7f;
+}
+
+#verdict{
+  text-align: center;
+  font-size: 1.5rem;
+  color: rgb(239, 239, 239);
+  border-top: 3px dotted #5eca7f;
+  margin: 10px;
+  padding: 20px;
+}
+
+#try-again{
+  margin: auto;
+  text-align: center;
+}
+
+#try-again-btn{
+  padding: 10px 10px;
+  border: 5px solid #14191c;
+  border-radius: 10px;
+  background-color: rgb(84, 214, 89);
+  color: #14191c;
+  font-weight: bold;
+}
+
+/*Animations*/
+.flip{
+  transform: rotateX(180deg);
+}
+
+.pop{
+  animation: pop 0.6s ease-in-out;
+}
+
+@keyframes pop{
+  0% {transform: scale(1);}
+  50% {transform: scale(1.15);}
+  100% {transform: scale(1);}
+}
